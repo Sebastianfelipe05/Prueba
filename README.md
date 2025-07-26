@@ -71,5 +71,19 @@ La API se iniciará en:
 http://localhost:4000
 Abre public/index.html en tu navegador para ver el frontend.
 
-## Se adjunta comprobante que la aplicacion funciona segun el ejemplo
-![alt text](image.png)
+🧪 Prueba funcional de la app 📸
+
+✅ Creación de tarea
+✅ Edición de tarea
+✅ Eliminación
+✅ Filtros por estado y prioridad
+✅ Estadísticas actualizadas
+
+![demo](./screenshots/demo.png)
+
+
+🌱 Ramas
+main: versión estable
+
+develop: rama de desarrollo donde se agregaron los campos task_id, origin_framework y user_email.
+
