@@ -70,3 +70,6 @@ npm run dev
 La API se iniciará en:
 http://localhost:4000
 Abre public/index.html en tu navegador para ver el frontend.
+
+## Se adjunta comprobante que la aplicacion funciona segun el ejemplo
+![alt text](image.png)
