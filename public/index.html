@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Tareas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+  <div class="max-w-4xl mx-auto space-y-6">
+
+    <!-- Encabezado -->
+    <div class="flex justify-between items-center bg-white p-4 rounded shadow">
+      <div>
+        <h1 class="text-2xl font-bold">Gestión de Tareas</h1>
+        <p class="text-gray-500 text-sm">Organiza y administra tus tareas de forma eficiente</p>
+      </div>
+      <button onclick="scrollToForm()" class="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Nueva Tarea
+      </button>
+    </div>
+
+    <!-- Formulario -->
+    <form id="taskForm" class="bg-white p-4 rounded shadow space-y-4">
+      <input type="hidden" id="taskId" />
+      <div>
+        <label class="block font-semibold">Título *</label>
+        <input type="text" id="title" maxlength="150" required class="w-full border rounded p-2"/>
+      </div>
+      <div>
+        <label class="block font-semibold">Descripción</label>
+        <textarea id="description" maxlength="1000" class="w-full border rounded p-2"></textarea>
+      </div>
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <label class="block font-semibold">Fecha de vencimiento</label>
+          <input type="date" id="dueDate" class="w-full border rounded p-2"/>
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold">Prioridad</label>
+          <select id="priority" class="w-full border rounded p-2">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold">Estado</label>
+          <select id="status" class="w-full border rounded p-2">
+            <option value="Pendiente" selected>Pendiente</option>
+            <option value="En progreso">En progreso</option>
+            <option value="Completada">Completada</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+        Guardar Tarea
+      </button>
+    </form>
+
+    <!-- Filtros -->
+    <div class="flex flex-wrap gap-4">
+      <div>
+        <label class="block font-semibold">Filtrar por estado</label>
+        <select id="filterStatus" class="border rounded p-2">
+          <option value="Todas">Todas</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="En progreso">En progreso</option>
+          <option value="Completada">Completada</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold">Filtrar por prioridad</label>
+        <select id="filterPriority" class="border rounded p-2">
+          <option value="Todas">Todas</option>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Lista de tareas -->
+    <div id="tasksList" class="space-y-3">
+      <!-- Se renderizan las tarjetas -->
+    </div>
+
+    <!-- Estadísticas -->
+    <div id="stats" class="bg-white p-4 rounded shadow">
+      <h2 class="font-semibold mb-2">Estadísticas</h2>
+      <div class="flex gap-4">
+        <p class="text-blue-600">0 Pendientes</p>
+        <p class="text-yellow-600">0 En Progreso</p>
+        <p class="text-green-600">0 Completadas</p>
+      </div>
+    </div>
+
+  </div>
+  <script src="./main.js"></script>
+  <script>
+    function scrollToForm(){
+      document.getElementById('taskForm').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
