@@ -2,18 +2,26 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Task = sequelize.define('Task', {
- title: {
-  type: DataTypes.STRING(150),
-  allowNull: false,
-  unique: true, // clave para que sea único
-  validate: {
-    len: [1, 150] // longitud entre 1 y 150
+  title: {
+    type: DataTypes.STRING(150),
+    allowNull: false,
+    unique: true,
+    validate: {
+      len: {
+        args: [1, 150],
+        msg: 'El título debe tener entre 1 y 150 caracteres'
+      }
     }
   },
-
   description: {
-    type: DataTypes.TEXT,
-    allowNull: true
+    type: DataTypes.STRING(1000),
+    allowNull: true,
+    validate: {
+      len: {
+        args: [0, 1000],
+        msg: 'La descripción no puede tener más de 1000 caracteres'
+      }
+    }
   },
   due_date: {
     type: DataTypes.DATE,

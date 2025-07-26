@@ -24,7 +24,8 @@ exports.createTask = async (req, res) => {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(400).json({ error: 'El título ya existe' });
     } else if (err.name === 'SequelizeValidationError') {
-      res.status(400).json({ error: 'Datos inválidos', details: err.errors });
+      const messages = err.errors.map(e => e.message).join(', ');
+      res.status(400).json({ error: messages });
     } else {
       res.status(500).json({ error: 'Error al crear tarea' });
     }
@@ -44,6 +45,9 @@ exports.updateTask = async (req, res) => {
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(400).json({ error: 'El título ya existe' });
+    } else if (err.name === 'SequelizeValidationError') {
+      const messages = err.errors.map(e => e.message).join(', ');
+      res.status(400).json({ error: messages });
     } else {
       res.status(500).json({ error: 'Error al actualizar tarea' });
     }

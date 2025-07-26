@@ -1,33 +1,72 @@
 # 📋 Prueba técnica - CRUD gestor de tareas
 
-Aplicación web para crear, leer, actualizar y eliminar tareas con prioridad, estado y fecha de vencimiento.
+Aplicación web completa para crear, leer, actualizar y eliminar tareas con prioridad, estado y fecha de vencimiento.
 
-## 🚀 Tecnologías
-- Node.js + Express + Sequelize
-- MySQL
-- HTML + Tailwind CSS + JavaScript
+---
 
-## 📦 Estructura
+## 🚀 Tecnologías utilizadas
+- **Node.js + Express** → backend REST API
+- **Sequelize** → ORM para conectarse a base de datos
+- **MySQL** → base de datos relacional
+- **HTML + Tailwind CSS + JavaScript** → frontend moderno y responsive
+
+---
+
+## 📦 Estructura del proyecto
+
 /public → Frontend (index.html, main.js)
 /src
-/config → Config Sequelize
+/config → Configuración de Sequelize
 /models → Modelo Task
-/controllers → Lógica CRUD
-/routes → Endpoints
-server.js → Punto de entrada
-
-markdown
-Copiar
-Editar
+/controllers → Controladores (CRUD)
+/routes → Endpoints de API
+server.js → Punto de entrada de la aplicación
+README.md → Documentación
+.env → Variables de entorno
 
 
-## ✅ Funcionalidades
-- Crear, listar, editar, eliminar tareas
-- Filtrar por prioridad y estado
-- Estadísticas de tareas
-- Visualización responsive
+---
 
-## ⚙️ Instalación
+## ✅ Funcionalidades principales
+- Crear, listar, editar y eliminar tareas
+- Campos: título (único, máx 150), descripción (opcional, máx 1000), prioridad, estado y fecha de vencimiento
+- Filtros por prioridad y estado (persisten con localStorage)
+- Estadísticas dinámicas (pendientes, en progreso, completadas)
+- Visualización de urgencia cuando una tarea está por vencer (<2 días)
+- Responsive (funciona en escritorio y móvil)
+
+---
+
+## ⚙️ Instalación y configuración
+
+### 1️⃣ Clonar el proyecto
 ```bash
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
+
+2️⃣ Instalar dependencias
 npm install
+
+
+3️⃣ Crear base de datos en MySQL
+Por defecto, busca una base llamada prueba (puedes cambiarla).
+Ejecuta en tu cliente MySQL / Workbench:
+CREATE DATABASE prueba;
+
+4️⃣ Configurar variables de entorno
+Crea un archivo .env en la raíz:
+
+DB_HOST=localhost
+DB_NAME=prueba_db
+DB_USER=tu_usuario_mysql
+DB_PASS=tu_contraseña_mysql
+DB_DIALECT=mysql
+PORT=4000
+
+
+🏁 Iniciar la aplicación
 npm run dev
+
+La API se iniciará en:
+http://localhost:4000
+Abre public/index.html en tu navegador para ver el frontend.
