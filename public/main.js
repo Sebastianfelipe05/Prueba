@@ -246,3 +246,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.getElementById('searchPokemonBtn').addEventListener('click', async() => {
+  const name = document.getElementById('pokemonInput').value.trim().toLowerCase();
+  if (!name){
+    Swal.fire("⚠️", "por favot escribe el nombre del pokemon que quieres buscar", "error")
+    
+    return;   
+  } 
+  
+  
+ try {
+    const res = await fetch(`/api/pokemon/${name}`);
+    if (!res.ok) throw new Error("No encontrado");
+    const data = await res.json();
+
+    Swal.fire({
+      title: data.name.toUpperCase(),
+      html: `
+        <img src="${data.sprites.front_default}" alt="${data.name}" class="mx-auto"/>
+        <p><strong>Tipo:</strong> ${data.types.map(t => t.type.name).join(', ')}</p>
+        <p><strong>Altura:</strong> ${data.height / 10} m</p>
+        <p><strong>Peso:</strong> ${data.weight / 10} kg</p>
+      `,
+      confirmButtonText: "Cerrar"
+    });
+  } catch (err) {
+    Swal.fire("❌ pokemon no encontrado","", "error")
+  }
+});
